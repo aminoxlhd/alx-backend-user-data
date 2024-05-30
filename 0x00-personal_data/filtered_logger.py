@@ -33,6 +33,7 @@ def filter_datum(fields: List[str], redaction: str, message: str,
         message = re.sub(regex, f"{field}={redaction}", message)
     return message
 
+
 def get_logger() -> logging.Logger:
     """get_logger function"""
     logger = logging.getLogger("user_data")
