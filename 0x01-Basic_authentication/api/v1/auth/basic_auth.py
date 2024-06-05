@@ -2,7 +2,8 @@
 """ Basic auth"""
 import base64
 import binascii
-
+from typing import TypeVar, List
+from models.user import User
 from api.v1.auth.auth import Auth
 
 
@@ -40,3 +41,11 @@ class BasicAuth(Auth):
             res = decoded_64.split(":", 1)
             return (res[0], res[1])
         return (None, None)
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """urrent_user function"""
+        heade = self.authorization_header(request)
+        b64header = self.extract_base64_authorization_header(heade)
+        decoded = self.decode_base64_authorization_header(b64header)
+        user_creds = self.extract_user_credentials(decoded)
+        return self.user_object_from_credentials(*user_creds)
