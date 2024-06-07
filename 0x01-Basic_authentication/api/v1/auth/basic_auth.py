@@ -60,7 +60,6 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-
     def current_user(self, request=None) -> TypeVar('User'):
         """urrent_user function"""
         Auth_header = self.authorization_header(request)
