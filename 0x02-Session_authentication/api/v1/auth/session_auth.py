@@ -24,10 +24,9 @@ class SessionAuth(Auth):
             return
         return SessionAuth.user_id_by_session_id.get(session_id, None)
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None):
         """current_user function"""
-        if request:
-            session_cookie = self.session_cookie(request)
-            if session_cookie:
-                user_id = self.user_id_for_session_id(session_cookie)
-                return User.get(user_id)
+        session_cookie = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(session_cookie)
+        user = User.get(user_id)
+        return user
