@@ -45,4 +45,3 @@ class DB:
         except InvalidRequestError:
             raise
         return user
-
