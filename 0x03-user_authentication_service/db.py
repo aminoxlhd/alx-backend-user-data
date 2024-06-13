@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-from user import Base
+from user import Base, User
 
 
 class DB:
@@ -31,5 +31,5 @@ class DB:
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
-        self._session.refresh(user)  # Refresh to get generated ID
+        self._session.refresh(user)
         return user
