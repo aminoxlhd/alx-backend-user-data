@@ -36,8 +36,8 @@ class DB:
         self._session.refresh(user)
         return user
 
-    def DB.find_user_by(self, **kwargs) -> User:
-        """DB.find_user_by function"""
+    def find_user_by(self, **kwargs) -> User:
+        """find_user_by function"""
         try:
             user = self._session.query(User).filter_by(**kwargs).one()
         except NoResultFound:
