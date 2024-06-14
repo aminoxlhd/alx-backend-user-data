@@ -59,7 +59,7 @@ class Auth:
         """create_session function"""
         try:
             user = self._db.find_user_by(email=email)
-            new_session_id = self._generate_uuid()
+            new_session_id = _generate_uuid()
             self._db.update_user(user.id, session_id=new_session_id)
             return new_session_id
         except NoResultFound:
